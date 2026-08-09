@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberBrasil 2067 | Em Breve</title>
+  <meta name="description" content="CyberBrasil 2067 - Vivencie a experiência definitiva do cyberpunk brasileiro. Adicione à sua lista de desejos na Steam.">
+  
+  <!-- Google Fonts for Cyberpunk Aesthetic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,700&family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css?v=3">
+</head>
+<body>
+  <!-- Scanlines & Grid Overlay -->
+  <div class="grid-background"></div>
+
+  <!-- Main Container -->
+  <div class="landing-container">
+    
+    <!-- Top Header Navigation -->
+    <header class="header">
+      <div class="logo-container" id="logo">
+        <img src="CyberBrazilLogo.svg" alt="CyberBrasil 2067 Logo" class="brand-logo">
+      </div>
+
+      <nav class="nav-links">
+        <a href="#sobre" class="nav-link active" data-tab="sobre">
+          SOBRE
+        </a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="social-header-links">
+          <a href="#instagram" class="social-header-link" data-tab="instagram">
+            <img src="new-instagram-logo-glyph.svg" alt="Instagram" class="social-icon">
+          </a>
+          <a href="#facebook" class="social-header-link" data-tab="facebook">
+            <img src="facebook-fill-svgrepo-com.svg" alt="Facebook" class="social-icon">
+          </a>
+          <a href="#youtube" class="social-header-link" data-tab="youtube">
+            <img src="brand-youtube-svgrepo-com.svg" alt="YouTube" class="social-icon">
+          </a>
+        </div>
+
+        <button class="btn-news" id="openNewsModal">
+          <img src="Mail.svg" alt="Newsletter" class="btn-icon">
+          <span>RECEBER NOTÍCIAS</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero Main Section -->
+    <main class="hero-section">
+      <!-- Left Content Column -->
+      <div class="hero-content">
+        <div class="headline-container" id="headline">
+          <h1 class="hero-title">
+            <span class="title-em">EM</span>
+            <span class="title-breve">BREVE</span>
+          </h1>
+        </div>
+
+        <div class="hero-actions-left">
+          <button class="btn-wishlist" id="openWishlistModal">
+            <img src="Steam_icon_logo 1.svg" alt="Steam" class="btn-steam-icon">
+            <span>ADICIONAR A LISTA DE DESEJOS</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Column Visual & Teaser CTA -->
+      <div class="hero-visual">
+        <div class="visual-wrapper">
+          <img src="Subtract.svg" alt="Cyber Background Curve" class="art-bg-shape">
+        </div>
+        
+        <div class="hero-actions-right">
+          <button class="btn-teaser" id="openTeaserModal">
+            <img src="Play.svg" alt="Play Teaser" class="btn-play-icon">
+            <span>ASSISTIR O TEASER</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Character (Placed Above All Layers) -->
+      <img src="Main_Char_CyberBrazil.png" alt="CyberBrasil 2067 Main Character" class="art-character">
+    </main>
+
+    <!-- Footer Bar -->
+    <footer class="footer">
+      <div class="copyright">
+        CYBERBRAZIL 2067 &copy; TODOS OS DIREITOS RESERVADOS
+      </div>
+      <div class="studio-credit">
+        @SALLA.STUDIO
+      </div>
+    </footer>
+  </div>
+
+  <!-- Teaser Video Modal -->
+  <div class="modal-overlay" id="teaserModal">
+    <div class="modal-content video-modal">
+      <button class="modal-close" id="closeTeaserModal">&times;</button>
+      <div class="video-container">
+        <iframe 
+          id="teaserIframe"
+          src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?enablejsapi=1&autoplay=0" 
+          title="CyberBrasil 2067 Teaser Trailer"
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="modal-footer-bar">
+        <span class="status-tag"><span class="pulse-dot"></span> TEASER OFICIAL 4K</span>
+        <button class="modal-btn-cyan" id="wishlistFromVideo">GARANTIR NA STEAM</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wishlist Modal -->
+  <div class="modal-overlay" id="wishlistModal">
+    <div class="modal-content wishlist-card">
+      <button class="modal-close" id="closeWishlistModal">&times;</button>
+      <div class="cyber-badge">STEAM STORE</div>
+      <div class="wishlist-header">
+        <img src="Steam_icon_logo 1.svg" alt="Steam" class="modal-steam-icon">
+        <h2>CYBERBRASIL 2067</h2>
+      </div>
+      <p class="wishlist-desc">Adicione CyberBrasil 2067 à sua Lista de Desejos da Steam e receba notificações no lançamento!</p>
+      
+      <div class="wishlist-status" id="wishlistStatus">
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+        <span>CONECTANDO À STEAM...</span>
+      </div>
+
+      <div class="wishlist-actions">
+        <a href="https://store.steampowered.com" target="_blank" rel="noopener" class="btn-confirm-steam" id="confirmSteamBtn">
+          ABRIR PÁGINA DA STEAM
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Newsletter Modal -->
+  <div class="modal-overlay" id="newsModal">
+    <div class="modal-content news-card">
+      <button class="modal-close" id="closeNewsModal">&times;</button>
+      <div class="cyber-badge">COMUNICAÇÕES OPERACIONAIS</div>
+      <h2>RECEBER NOTÍCIAS DA MATRIZ</h2>
+      <p>Inscreva seu e-mail para receber boletins exclusivos de desenvolvimento, artes de conceito e convites para o beta fechado.</p>
+      
+      <form id="newsForm" class="news-form">
+        <div class="input-group">
+          <input type="email" id="newsEmail" placeholder="DIGITE SEU E-MAIL ACESSÍVEL..." required>
+          <button type="submit" class="btn-submit-news">INSCREVER</button>
+        </div>
+      </form>
+      
+      <div class="form-feedback" id="newsFeedback"></div>
+    </div>
+  </div>
+
+
+
+  <script src="app.js"></script>
+</body>
+</html>
