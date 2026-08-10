@@ -214,12 +214,12 @@ html, body {
    ========================================================================== */
 
 .hero-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 2rem;
-  min-height: calc(100vh - 180px);
-  position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 2rem;
+    min-height: calc(100vh - 220px);
+    position: relative;
 }
 
 /* Left Content Column */
