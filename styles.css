@@ -260,14 +260,10 @@ html, body {
   letter-spacing: 0.02em;
   -webkit-text-stroke: 4px var(--color-black);
   paint-order: stroke fill;
-  text-shadow: 0 0 25px rgba(0, 228, 225, 0.4), 0 10px 30px rgba(0,0,0,0.1);
   margin-top: 0.05em;
 }
 
-/* Glitch Animation Effect on Hover */
-.headline-container:hover .hero-title {
-  animation: glitch-anim 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
+
 
 @keyframes glitch-anim {
   0% { transform: translate(0); }
@@ -288,7 +284,7 @@ html, body {
 .btn-wishlist {
   display: inline-flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   background-color: #000000;
   color: var(--color-cyan);
   border: 2px solid #000000;
@@ -297,7 +293,7 @@ html, body {
   font-family: var(--font-cyber);
   font-weight: 700;
   font-size: 0.70rem;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   cursor: pointer;
   box-shadow: 2px 2px 0px #00E4E1;
   transition: all 0.15s ease;
@@ -314,8 +310,8 @@ html, body {
 }
 
 .btn-steam-icon {
-  width: 32px;
-  height: 32px;
+  width: 20px;
+  height: 20px;
   object-fit: contain;
 }
 
@@ -358,7 +354,7 @@ html, body {
 .btn-teaser {
   display: inline-flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   background-color: var(--color-cyan);
   color: var(--color-black);
   border: 2px solid #000000;
@@ -367,7 +363,7 @@ html, body {
   font-family: var(--font-cyber);
   font-weight: 700;
   font-size: 0.70rem;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   cursor: pointer;
   box-shadow: 2px 2px 0px #000000;
   transition: all 0.15s ease;
@@ -384,8 +380,8 @@ html, body {
 }
 
 .btn-play-icon {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   object-fit: contain;
 }
 
