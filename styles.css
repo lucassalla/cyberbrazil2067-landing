@@ -901,7 +901,7 @@ html, body {
 @media (max-width: 1024px) {
   .landing-container {
     padding: 1.25rem 1.5rem 0px 1.5rem !important;
-    min-height: 85vh;
+    min-height: 90vh;
   }
 
   .footer {
@@ -1144,7 +1144,7 @@ html, body {
 
 @media (max-width: 480px) {
   .landing-container {
-    padding: 0.75rem 0.75rem 0px 0.75rem !important;
+    padding: 2rem !important;
   }
 
   .brand-logo {
@@ -1180,8 +1180,8 @@ html, body {
   }
 
   .art-character {
-    height: 42vh;
-    max-height: 350px;
+    height: 50vh;
+    max-height: 550px;
     bottom: 0px !important;
   }
 
