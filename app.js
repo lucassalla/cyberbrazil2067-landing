@@ -86,69 +86,142 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Modal Dialog Handlers
-  const teaserModal = document.getElementById('teaserModal');
+  const screenshotModal = document.getElementById('screenshotModal');
   const wishlistModal = document.getElementById('wishlistModal');
   const newsModal = document.getElementById('newsModal');
 
-  const openTeaserBtn = document.getElementById('openTeaserModal');
+  const openScreenshotBtn = document.getElementById('openScreenshotModal');
   const openWishlistBtn = document.getElementById('openWishlistModal');
   const openNewsBtn = document.getElementById('openNewsModal');
-  const wishlistFromVideoBtn = document.getElementById('wishlistFromVideo');
 
-  const closeTeaserBtn = document.getElementById('closeTeaserModal');
+  const closeScreenshotBtn = document.getElementById('closeScreenshotModal');
   const closeWishlistBtn = document.getElementById('closeWishlistModal');
   const closeNewsBtn = document.getElementById('closeNewsModal');
 
+  // Screenshot Slideshow Setup
+  const screenshots = [
+    'Screenshots/Group 23.png',
+    'Screenshots/Group 24.png',
+    'Screenshots/Group 25.png',
+    'Screenshots/Group 26.png',
+    'Screenshots/Group 27.png',
+    'Screenshots/Group 28.png',
+    'Screenshots/Group 29.png',
+    'Screenshots/Group 30.png'
+  ];
+  let currentSlideIndex = 0;
+
+  const slideshowImg = document.getElementById('slideshowImage');
+  const slideshowCounter = document.getElementById('slideshowCounter');
+  const prevSlideBtn = document.getElementById('prevSlideBtn');
+  const nextSlideBtn = document.getElementById('nextSlideBtn');
+  const thumbnailsContainer = document.getElementById('slideshowThumbnails');
+
+  // Build Thumbnails
+  if (thumbnailsContainer) {
+    thumbnailsContainer.innerHTML = '';
+    screenshots.forEach((src, idx) => {
+      const thumb = document.createElement('div');
+      thumb.className = `thumb-item ${idx === 0 ? 'active' : ''}`;
+      thumb.innerHTML = `<img src="${src}" alt="Thumbnail ${idx + 1}">`;
+      thumb.addEventListener('click', () => {
+        playSound('click');
+        goToSlide(idx);
+      });
+      thumbnailsContainer.appendChild(thumb);
+    });
+  }
+
+  function goToSlide(index) {
+    currentSlideIndex = (index + screenshots.length) % screenshots.length;
+    if (slideshowImg) {
+      slideshowImg.classList.add('fade-out');
+      setTimeout(() => {
+        slideshowImg.src = screenshots[currentSlideIndex];
+        slideshowImg.classList.remove('fade-out');
+      }, 120);
+    }
+    if (slideshowCounter) {
+      slideshowCounter.textContent = `${String(currentSlideIndex + 1).padStart(2, '0')} / ${String(screenshots.length).padStart(2, '0')}`;
+    }
+    // Update active thumb
+    if (thumbnailsContainer) {
+      const thumbs = thumbnailsContainer.querySelectorAll('.thumb-item');
+      thumbs.forEach((t, i) => {
+        if (i === currentSlideIndex) {
+          t.classList.add('active');
+          t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        } else {
+          t.classList.remove('active');
+        }
+      });
+    }
+  }
+
+  if (prevSlideBtn) {
+    prevSlideBtn.addEventListener('click', () => {
+      playSound('click');
+      goToSlide(currentSlideIndex - 1);
+    });
+  }
+
+  if (nextSlideBtn) {
+    nextSlideBtn.addEventListener('click', () => {
+      playSound('click');
+      goToSlide(currentSlideIndex + 1);
+    });
+  }
+
   function openModal(modal) {
     playSound('open');
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
+    if (modal) {
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
   }
 
   function closeModal(modal) {
     playSound('click');
-    modal.classList.remove('open');
-    document.body.style.overflow = '';
-    
-    // Stop video iframe playback when closing teaser modal
-    if (modal === teaserModal) {
-      const iframe = document.getElementById('teaserIframe');
-      if (iframe) {
-        const src = iframe.src;
-        iframe.src = src; // Reload iframe to stop video playback
-      }
+    if (modal) {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
     }
   }
 
-  openTeaserBtn.addEventListener('click', () => openModal(teaserModal));
-  openWishlistBtn.addEventListener('click', () => openModal(wishlistModal));
-  openNewsBtn.addEventListener('click', () => openModal(newsModal));
-  
-  if (wishlistFromVideoBtn) {
-    wishlistFromVideoBtn.addEventListener('click', () => {
-      closeModal(teaserModal);
-      setTimeout(() => openModal(wishlistModal), 200);
-    });
-  }
+  if (openScreenshotBtn) openScreenshotBtn.addEventListener('click', () => openModal(screenshotModal));
+  if (openWishlistBtn) openWishlistBtn.addEventListener('click', () => openModal(wishlistModal));
+  if (openNewsBtn) openNewsBtn.addEventListener('click', () => openModal(newsModal));
 
-  closeTeaserBtn.addEventListener('click', () => closeModal(teaserModal));
-  closeWishlistBtn.addEventListener('click', () => closeModal(wishlistModal));
-  closeNewsBtn.addEventListener('click', () => closeModal(newsModal));
+  if (closeScreenshotBtn) closeScreenshotBtn.addEventListener('click', () => closeModal(screenshotModal));
+  if (closeWishlistBtn) closeWishlistBtn.addEventListener('click', () => closeModal(wishlistModal));
+  if (closeNewsBtn) closeNewsBtn.addEventListener('click', () => closeModal(newsModal));
 
   // Close modal when clicking on background overlay
-  [teaserModal, wishlistModal, newsModal].forEach(modal => {
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        closeModal(modal);
-      }
-    });
+  [screenshotModal, wishlistModal, newsModal].forEach(modal => {
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          closeModal(modal);
+        }
+      });
+    }
   });
 
-  // Close modal with ESC key
+  // Keyboard Navigation & Escape Key
   document.addEventListener('keydown', (e) => {
+    if (screenshotModal && screenshotModal.classList.contains('open')) {
+      if (e.key === 'ArrowLeft') {
+        playSound('click');
+        goToSlide(currentSlideIndex - 1);
+      } else if (e.key === 'ArrowRight') {
+        playSound('click');
+        goToSlide(currentSlideIndex + 1);
+      }
+    }
+
     if (e.key === 'Escape') {
-      [teaserModal, wishlistModal, newsModal].forEach(modal => {
-        if (modal.classList.contains('open')) {
+      [screenshotModal, wishlistModal, newsModal].forEach(modal => {
+        if (modal && modal.classList.contains('open')) {
           closeModal(modal);
         }
       });
