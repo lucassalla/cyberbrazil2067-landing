@@ -901,7 +901,7 @@ html, body {
 @media (max-width: 1024px) {
   .landing-container {
     padding: 1.25rem 1.5rem 0px 1.5rem !important;
-    min-height: 90vh;
+    min-height: 85vh;
   }
 
   .footer {
