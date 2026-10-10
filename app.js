@@ -87,16 +87,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Modal Dialog Handlers
   const screenshotModal = document.getElementById('screenshotModal');
+  const trailerModal = document.getElementById('trailerModal');
   const wishlistModal = document.getElementById('wishlistModal');
   const newsModal = document.getElementById('newsModal');
 
   const openScreenshotBtn = document.getElementById('openScreenshotModal');
+  const openTrailerBtn = document.getElementById('openTrailerModal');
   const openWishlistBtn = document.getElementById('openWishlistModal');
   const openNewsBtn = document.getElementById('openNewsModal');
 
   const closeScreenshotBtn = document.getElementById('closeScreenshotModal');
+  const closeTrailerBtn = document.getElementById('closeTrailerModal');
   const closeWishlistBtn = document.getElementById('closeWishlistModal');
   const closeNewsBtn = document.getElementById('closeNewsModal');
+
+  const trailerIframe = document.getElementById('trailerIframe');
+  const trailerVideoUrl = 'https://www.youtube-nocookie.com/embed/PN6-7AzZHCg?enablejsapi=1&autoplay=1&rel=0';
 
   // Screenshot Slideshow Setup
   const screenshots = [
@@ -175,6 +181,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function openModal(modal) {
     playSound('open');
     if (modal) {
+      if (modal === trailerModal && trailerIframe) {
+        trailerIframe.src = trailerVideoUrl;
+      }
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -183,21 +192,26 @@ document.addEventListener('DOMContentLoaded', () => {
   function closeModal(modal) {
     playSound('click');
     if (modal) {
+      if (modal === trailerModal && trailerIframe) {
+        trailerIframe.src = '';
+      }
       modal.classList.remove('open');
       document.body.style.overflow = '';
     }
   }
 
   if (openScreenshotBtn) openScreenshotBtn.addEventListener('click', () => openModal(screenshotModal));
+  if (openTrailerBtn) openTrailerBtn.addEventListener('click', () => openModal(trailerModal));
   if (openWishlistBtn) openWishlistBtn.addEventListener('click', () => openModal(wishlistModal));
   if (openNewsBtn) openNewsBtn.addEventListener('click', () => openModal(newsModal));
 
   if (closeScreenshotBtn) closeScreenshotBtn.addEventListener('click', () => closeModal(screenshotModal));
+  if (closeTrailerBtn) closeTrailerBtn.addEventListener('click', () => closeModal(trailerModal));
   if (closeWishlistBtn) closeWishlistBtn.addEventListener('click', () => closeModal(wishlistModal));
   if (closeNewsBtn) closeNewsBtn.addEventListener('click', () => closeModal(newsModal));
 
   // Close modal when clicking on background overlay
-  [screenshotModal, wishlistModal, newsModal].forEach(modal => {
+  [screenshotModal, trailerModal, wishlistModal, newsModal].forEach(modal => {
     if (modal) {
       modal.addEventListener('click', (e) => {
         if (e.target === modal) {
@@ -220,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (e.key === 'Escape') {
-      [screenshotModal, wishlistModal, newsModal].forEach(modal => {
+      [screenshotModal, trailerModal, wishlistModal, newsModal].forEach(modal => {
         if (modal && modal.classList.contains('open')) {
           closeModal(modal);
         }

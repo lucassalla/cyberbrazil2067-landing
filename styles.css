@@ -264,8 +264,9 @@ html, body {
   align-items: center;
 }
 
-/* Wishlist Button: ADICIONAR A LISTA DE DESEJOS (Black Button + Cyan 2px 2px Shadow) */
-.btn-wishlist {
+/* Wishlist / Trailer Button: (Black Button + Cyan 2px 2px Shadow) */
+.btn-wishlist,
+.btn-trailer {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
@@ -283,20 +284,25 @@ html, body {
   transition: all 0.15s ease;
 }
 
-.btn-wishlist:hover {
+.btn-wishlist:hover,
+.btn-trailer:hover {
   transform: translate(-1px, -1px);
   box-shadow: 3px 3px 0px #00E4E1;
 }
 
-.btn-wishlist:active {
+.btn-wishlist:active,
+.btn-trailer:active {
   transform: translate(2px, 2px);
   box-shadow: 0px 0px 0px #00E4E1;
 }
 
-.btn-steam-icon {
-  width: 20px;
-  height: 20px;
+.btn-steam-icon,
+.btn-play-icon,
+.btn-gallery-icon {
+  width: 18px;
+  height: 18px;
   object-fit: contain;
+  flex-shrink: 0;
 }
 
 /* Right Column Visual */
@@ -502,6 +508,18 @@ html, body {
   gap: 1rem;
 }
 
+/* Trailer Video Modal */
+.video-modal {
+  max-width: 960px;
+  width: 92%;
+  padding: 1.5rem;
+  background-color: rgba(12, 12, 18, 0.98);
+  border: 2px solid var(--color-cyan);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(0, 228, 225, 0.35);
+  border-radius: 8px;
+  position: relative;
+}
+
 .slideshow-header {
   display: flex;
   flex-direction: column;
@@ -698,6 +716,10 @@ html, body {
 }
 
 .modal-btn-cyan {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   background-color: var(--color-cyan);
   color: var(--color-black);
   border: none;
@@ -712,6 +734,7 @@ html, body {
 
 .modal-btn-cyan:hover {
   background-color: #FFFFFF;
+  color: var(--color-black);
   box-shadow: 0 0 15px #FFFFFF;
 }
 
@@ -995,7 +1018,7 @@ html, body {
     bottom: auto !important;
   }
 
-  .btn-teaser, .btn-wishlist {
+  .btn-teaser, .btn-wishlist, .btn-trailer {
     width: auto;
     flex: 0 1 auto;
     max-width: none;
@@ -1076,7 +1099,7 @@ html, body {
     -webkit-text-stroke: 2.5px var(--color-black);
   }
 
-  .btn-teaser, .btn-wishlist {
+  .btn-teaser, .btn-wishlist, .btn-trailer {
     padding: 0.6rem 0.9rem;
     font-size: 0.65rem;
   }
@@ -1099,8 +1122,9 @@ html, body {
     transform: scale(0.9);
   }
 
-  /* Screenshot Modal Mobile Adaptations */
-  .screenshot-modal {
+  /* Screenshot & Video Modal Mobile Adaptations */
+  .screenshot-modal,
+  .video-modal {
     padding: 1rem 0.75rem;
     width: 96%;
   }
@@ -1186,7 +1210,7 @@ html, body {
     bottom: 0px !important;
   }
 
-  .btn-teaser, .btn-wishlist {
+  .btn-teaser, .btn-wishlist, .btn-trailer {
     font-size: 0.58rem;
     padding: 0.55rem 0.75rem;
   }
